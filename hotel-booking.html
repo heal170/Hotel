@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Booking — Luxury Hotels Middle East &amp; Australia</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --navy: #0A1628;
+      --navy2: #112240;
+      --gold: #C9A84C;
+      --gold2: #E8C96A;
+      --ivory: #FAF7F2;
+      --slate: #4A5568;
+      --muted: #8892A4;
+      --white: #FFFFFF;
+      --card-shadow: 0 4px 32px rgba(10, 22, 40, .12);
+      --gold-shadow: 0 0 0 2px rgba(201, 168, 76, .35);
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ivory);
+      color: var(--navy);
+      overflow-x: hidden
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      background: rgba(10, 22, 40, .92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, .15)
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: .04em;
+      text-decoration: none
+    }
+
+    .nav-logo span {
+      color: var(--gold)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .7);
+      text-decoration: none;
+      transition: color .2s
+    }
+
+    .nav-links a:hover {
+      color: var(--gold)
+    }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background .2s
+    }
+
+    .nav-cta:hover {
+      background: var(--gold2)
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 5% 80px;
+      background: linear-gradient(165deg, #0A1628 0%, #112240 40%, #1a2f52 70%, #0f1e35 100%);
+      overflow: hidden
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201, 168, 76, .12);
+      border: 1px solid rgba(201, 168, 76, .3);
+      border-radius: 40px;
+      padding: 6px 18px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px
+    }
+
+    .hero-badge::before {
+      content: '★';
+      font-size: 13px
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(3rem, 6.5vw, 6rem);
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 20px;
+      max-width: 860px
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold)
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, .55);
+      max-width: 560px;
+      margin: 0 auto 48px
+    }
+
+    /* Search bar */
+    .search-bar {
+      display: flex;
+      gap: 0;
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 48px rgba(0, 0, 0, .3);
+      max-width: 760px;
+      width: 100%
+    }
+
+    .search-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 14px 20px;
+      border-right: 1px solid #e8e8e8;
+      min-width: 0
+    }
+
+    .search-group:last-of-type {
+      border-right: none
+    }
+
+    .search-group label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px
+    }
+
+    .search-group select,
+    .search-group input {
+      border: none;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--navy);
+      background: transparent;
+      width: 100%
+    }
+
+    .search-group select option {
+      color: var(--navy)
+    }
+
+    .search-btn {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 0 32px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s;
+      flex-shrink: 0
+    }
+
+    .search-btn:hover {
+      background: var(--gold2)
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 56px;
+      justify-content: center
+    }
+
+    .stat {
+      text-align: center
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+      line-height: 1
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .45);
+      margin-top: 6px;
+      display: block
+    }
+
+    /* gold border accent */
+    .hero-border {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold2), var(--gold), transparent)
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: 96px 5%
+    }
+
+    .section-inner {
+      max-width: 1240px;
+      margin: 0 auto
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 16px
+    }
+
+    .section-sub {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--slate);
+      max-width: 580px
+    }
+
+    /* ── FILTER TABS ── */
+    .filter-wrap {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 40px 0 48px
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1.5px solid #d4d8e0;
+      border-radius: 6px;
+      padding: 9px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--slate);
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .filter-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .filter-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white)
+    }
+
+    /* ── HOTEL GRID ── */
+    .hotel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px
+    }
+
+    .hotel-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: transform .3s, box-shadow .3s;
+      display: flex;
+      flex-direction: column
+    }
+
+    .hotel-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(10, 22, 40, .18)
+    }
+
+    .hotel-img {
+      height: 220px;
+      background: var(--navy2);
+      position: relative;
+      overflow: hidden
+    }
+
+    .hotel-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s
+    }
+
+    .hotel-card:hover .hotel-img img {
+      transform: scale(1.06)
+    }
+
+    .stars {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(10, 22, 40, .75);
+      backdrop-filter: blur(4px);
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: .04em
+    }
+
+    .country-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    .hotel-body {
+      padding: 22px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1
+    }
+
+    .hotel-name {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+      line-height: 1.2
+    }
+
+    .hotel-loc {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px
+    }
+
+    .hotel-loc::before {
+      content: '📍';
+      font-size: 11px
+    }
+
+    .amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px
+    }
+
+    .amenity {
+      background: #f0f4fa;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--slate)
+    }
+
+    .hotel-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid #eef0f4;
+      margin-top: auto
+    }
+
+    .rate {
+      display: flex;
+      flex-direction: column
+    }
+
+    .rate-from {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .rate-price {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1
+    }
+
+    .rate-night {
+      font-size: 11px;
+      color: var(--muted)
+    }
+
+    .book-btn {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      padding: 11px 22px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s
+    }
+
+    .book-btn:hover {
+      background: var(--gold);
+      color: var(--navy)
+    }
+
+    /* ── ABOUT ── */
+    .about-section {
+      background: var(--navy);
+      padding: 96px 5%
+    }
+
+    .about-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center
+    }
+
+    .about-section .section-label {
+      color: var(--gold)
+    }
+
+    .about-section .section-title {
+      color: var(--white)
+    }
+
+    .about-section .section-sub {
+      color: rgba(255, 255, 255, .55)
+    }
+
+    .about-points {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 36px
+    }
+
+    .about-point {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start
+    }
+
+    .point-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 8px;
+      background: rgba(201, 168, 76, .12);
+      border: 1px solid rgba(201, 168, 76, .25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px
+    }
+
+    .point-text h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px
+    }
+
+    .point-text p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .5);
+      line-height: 1.6
+    }
+
+    .about-right {
+      position: relative
+    }
+
+    .about-right-card {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(201, 168, 76, .15);
+      border-radius: 16px;
+      padding: 40px;
+      backdrop-filter: blur(8px)
+    }
+
+    .about-right-card h3 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      margin-bottom: 20px;
+      font-weight: 600
+    }
+
+    .commission-tiers {
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .tier {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, .04);
+      border-radius: 8px;
+      padding: 14px 18px;
+      border-left: 3px solid var(--gold)
+    }
+
+    .tier-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, .8)
+    }
+
+    .tier-rate {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold)
+    }
+
+    .tier-note {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .4);
+      margin-top: 2px
+    }
+
+    .cta-about {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background .2s
+    }
+
+    .cta-about:hover {
+      background: var(--gold2)
+    }
+
+    /* ── BOOKING MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 22, 40, .85);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 620px;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform .35s cubic-bezier(.34, 1.56, .64, 1)
+    }
+
+    .modal-overlay.active .modal {
+      transform: translateY(0)
+    }
+
+    .modal-header {
+      background: var(--navy);
+      padding: 28px 32px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 1
+    }
+
+    .modal-header h2 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.6rem;
+      color: var(--white);
+      font-weight: 600
+    }
+
+    .modal-hotel-name {
+      font-size: 13px;
+      color: var(--gold);
+      margin-top: 4px;
+      font-weight: 500
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .1);
+      border: none;
+      color: var(--white);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s
+    }
+
+    .modal-close:hover {
+      background: rgba(201, 168, 76, .3)
+    }
+
+    .modal-body {
+      padding: 32px
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px
+    }
+
+    .form-row.full {
+      grid-template-columns: 1fr
+    }
+
+    .fg {
+      display: flex;
+      flex-direction: column;
+      gap: 7px
+    }
+
+    .fg label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--slate)
+    }
+
+    .fg input,
+    .fg select,
+    .fg textarea {
+      border: 1.5px solid #dde2ea;
+      border-radius: 7px;
+      padding: 12px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--navy);
+      outline: none;
+      transition: border-color .2s;
+      background: var(--white)
+    }
+
+    .fg input:focus,
+    .fg select:focus,
+    .fg textarea:focus {
+      border-color: var(--gold)
+    }
+
+    .fg textarea {
+      resize: vertical;
+      min-height: 90px
+    }
+
+    .modal-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--navy);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--white);
+      cursor: pointer;
+      transition: background .2s;
+      margin-top: 8px
+    }
+
+    .modal-submit:hover {
+      background: var(--gold);
+      color: var(--navy)
+    }
+
+    .modal-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 12px
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--navy);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 9999;
+      transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), opacity .4s;
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: 0 8px 32px rgba(10, 22, 40, .3)
+    }
+
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1
+    }
+
+    #toast.gold {
+      background: var(--gold);
+      color: var(--navy)
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 56px 5% 32px;
+      border-top: 1px solid rgba(201, 168, 76, .15)
+    }
+
+    .footer-inner {
+      max-width: 1240px;
+      margin: 0 auto
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 14px
+    }
+
+    .footer-logo span {
+      color: var(--gold)
+    }
+
+    .footer-desc {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .45);
+      line-height: 1.75;
+      max-width: 280px
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .footer-col a {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .5);
+      text-decoration: none;
+      transition: color .2s
+    }
+
+    .footer-col a:hover {
+      color: var(--gold)
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+      font-size: 12px;
+      color: rgba(255, 255, 255, .35)
+    }
+
+    .footer-bottom a {
+      color: rgba(255, 255, 255, .35);
+      text-decoration: none
+    }
+
+    .footer-bottom a:hover {
+      color: var(--gold)
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px) {
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 48px
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:768px) {
+      .nav-links {
+        display: none
+      }
+
+      .search-bar {
+        flex-direction: column;
+        border-radius: 12px
+      }
+
+      .search-group {
+        border-right: none;
+        border-bottom: 1px solid #e8e8e8
+      }
+
+      .search-btn {
+        padding: 16px
+      }
+
+      .hero-stats {
+        gap: 28px
+      }
+
+      .hotel-grid {
+        grid-template-columns: 1fr
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Hotel<span>Booking</span></a>
+    <ul class="nav-links">
+      <li><a href="#hotels">Hotels</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#hotels">Browse Hotels</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Luxury 4 &amp; 5-Star Collection</div>
+    <h1>Luxury Stays Across the<br /><em>Middle East &amp; Australia</em></h1>
+    <p class="hero-sub">Handpicked luxury hotels across the GCC, Egypt, Jordan and Australia — with the best rates and
+      personalised service.</p>
+
+    <div class="search-bar">
+      <div class="search-group">
+        <label>Destination</label>
+        <select id="heroCountry" onchange="filterHotels(this.value)">
+          <option value="all">All Countries</option>
+          <option value="UAE">UAE</option>
+          <option value="Saudi Arabia">Saudi Arabia</option>
+          <option value="Qatar">Qatar</option>
+          <option value="Bahrain">Bahrain</option>
+          <option value="Kuwait">Kuwait</option>
+          <option value="Oman">Oman</option>
+          <option value="Egypt">Egypt</option>
+          <option value="Jordan">Jordan</option>
+          <option value="Australia">Australia</option>
+        </select>
+      </div>
+      <div class="search-group">
+        <label>Check-in</label>
+        <input type="date" id="checkin" />
+      </div>
+      <div class="search-group">
+        <label>Check-out</label>
+        <input type="date" id="checkout" />
+      </div>
+      <div class="search-group">
+        <label>Guests</label>
+        <select id="heroGuests">
+          <option>1 Guest</option>
+          <option selected>2 Guests</option>
+          <option>3 Guests</option>
+          <option>4+ Guests</option>
+        </select>
+      </div>
+      <button class="search-btn" onclick="scrollToHotels()">Search</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">43</span><span class="stat-lbl">Luxury Hotels</span></div>
+      <div class="stat"><span class="stat-num">9</span><span class="stat-lbl">Countries</span></div>
+      <div class="stat"><span class="stat-num">24/7</span><span class="stat-lbl">Support</span></div>
+      <div class="stat"><span class="stat-num">0</span><span class="stat-lbl">Booking Fees</span></div>
+    </div>
+    <div class="hero-border"></div>
+  </section>
+
+  <!-- HOTELS -->
+  <section class="section" id="hotels">
+    <div class="section-inner">
+      <p class="section-label">Our Collection</p>
+      <h2 class="section-title">Luxury Hotels — Middle East &amp; Australia</h2>
+      <p class="section-sub">Handpicked 5-star icons and outstanding 4-star properties. Every hotel is personally vetted
+        — commission-based, no extra fees to you.</p>
+
+      <div class="filter-wrap" id="filterTabs">
+        <button class="filter-btn active" onclick="filterHotels('all',this)">All Countries</button>
+        <button class="filter-btn" onclick="filterHotels('UAE',this)">🇦🇪 UAE</button>
+        <button class="filter-btn" onclick="filterHotels('Saudi Arabia',this)">🇸🇦 Saudi Arabia</button>
+        <button class="filter-btn" onclick="filterHotels('Qatar',this)">🇶🇦 Qatar</button>
+        <button class="filter-btn" onclick="filterHotels('Bahrain',this)">🇧🇭 Bahrain</button>
+        <button class="filter-btn" onclick="filterHotels('Kuwait',this)">🇰🇼 Kuwait</button>
+        <button class="filter-btn" onclick="filterHotels('Oman',this)">🇴🇲 Oman</button>
+        <button class="filter-btn" onclick="filterHotels('Egypt',this)">🇪🇬 Egypt</button>
+        <button class="filter-btn" onclick="filterHotels('Jordan',this)">🇯🇴 Jordan</button>
+        <button class="filter-btn" onclick="filterHotels('Australia',this)">🇦🇺 Australia</button>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin:-28px 0 48px;align-items:center">
+        <span
+          style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:6px">Star
+          Rating:</span>
+        <button class="filter-btn star-btn active" onclick="filterStars('all',this)">All</button>
+        <button class="filter-btn star-btn" onclick="filterStars(5,this)">★★★★★ 5-Star</button>
+        <button class="filter-btn star-btn" onclick="filterStars(4,this)">★★★★ 4-Star</button>
+      </div>
+
+      <div class="hotel-grid" id="hotelGrid"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <div>
+        <p class="section-label">How We Work</p>
+        <h2 class="section-title" style="color:var(--white)">Luxury Access,<br />Zero Extra Cost</h2>
+        <p class="section-sub">Hotel Booking is a commission-based luxury travel concierge. We partner directly with
+          5-star properties across the Middle East and Australia, securing you the best available rates while we earn a
+          commission directly from the hotels — not from you.</p>
+        <div class="about-points">
+          <div class="about-point">
+            <div class="point-icon">🏆</div>
+            <div class="point-text">
+              <h4>Curated 4 &amp; 5-Star</h4>
+              <p>Five-star icons plus hand-selected four-star gems. Nothing below our luxury standard.</p>
+            </div>
+          </div>
+          <div class="about-point">
+            <div class="point-icon">💰</div>
+            <div class="point-text">
+              <h4>Best Rate Guarantee</h4>
+              <p>Our direct hotel partnerships mean you get rates that match or beat the hotel's own website.</p>
+            </div>
+          </div>
+          <div class="about-point">
+            <div class="point-icon">🛎️</div>
+            <div class="point-text">
+              <h4>Personal Concierge</h4>
+              <p>A dedicated agent handles your booking, room preferences, and special requests.</p>
+            </div>
+          </div>
+          <div class="about-point">
+            <div class="point-icon">✈️</div>
+            <div class="point-text">
+              <h4>9 Countries Covered</h4>
+              <p>UAE, Saudi Arabia, Qatar, Bahrain, Kuwait, Oman, Egypt, Jordan and Australia.</p>
+            </div>
+          </div>
+        </div>
+        <div
+          style="margin-top:32px;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:22px 24px">
+          <h4
+            style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">
+            How Reservations Work</h4>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;gap:12px;align-items:baseline"><span
+                style="font-family:'Cormorant Garant',serif;font-size:1.2rem;font-weight:700;color:var(--gold);min-width:20px">1</span>
+              <p style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;margin:0">Submit your booking inquiry
+                — takes 2 minutes, no payment needed</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:baseline"><span
+                style="font-family:'Cormorant Garant',serif;font-size:1.2rem;font-weight:700;color:var(--gold);min-width:20px">2</span>
+              <p style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;margin:0">We confirm availability
+                &amp; best rate within 2 hours</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:baseline"><span
+                style="font-family:'Cormorant Garant',serif;font-size:1.2rem;font-weight:700;color:var(--gold);min-width:20px">3</span>
+              <p style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;margin:0">Receive a <strong
+                  style="color:rgba(255,255,255,.85)">secure payment link</strong> by email to guarantee your room</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:baseline"><span
+                style="font-family:'Cormorant Garant',serif;font-size:1.2rem;font-weight:700;color:var(--gold);min-width:20px">4</span>
+              <p style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;margin:0">Reservation confirmed —
+                enjoy your stay</p>
+            </div>
+          </div>
+        </div>
+        <button class="cta-about" onclick="openModal('General Inquiry','Middle East & Australia')">Make a Booking
+          Inquiry</button>
+      </div>
+      <div class="about-right">
+        <div class="about-right-card">
+          <h3>Our Commission Model</h3>
+          <p style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:20px;line-height:1.6">We earn a commission
+            from our hotel partners — never charged to the guest. Rates shown are what you pay.</p>
+          <div class="commission-tiers">
+            <div class="tier">
+              <div>
+                <div class="tier-name">Standard Commission</div>
+                <div class="tier-note">All bookings, any country</div>
+              </div>
+              <div class="tier-rate">10–12%</div>
+            </div>
+            <div class="tier">
+              <div>
+                <div class="tier-name">Premium Partner Hotels</div>
+                <div class="tier-note">Ritz-Carlton, Four Seasons, Mandarin Oriental</div>
+              </div>
+              <div class="tier-rate">12–15%</div>
+            </div>
+            <div class="tier">
+              <div>
+                <div class="tier-name">Group Bookings (5+ rooms)</div>
+                <div class="tier-note">Negotiated group rate + override</div>
+              </div>
+              <div class="tier-rate">15–20%</div>
+            </div>
+            <div class="tier">
+              <div>
+                <div class="tier-name">Long Stay (7+ nights)</div>
+                <div class="tier-note">Extended stay partnerships</div>
+              </div>
+              <div class="tier-rate">12–18%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact" style="background:var(--white)">
+    <div class="section-inner">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+        <div>
+          <p class="section-label">Get in Touch</p>
+          <h2 class="section-title">Ready to Book Your<br />Luxury Stay?</h2>
+          <p class="section-sub" style="margin-bottom:36px">Our team is available around the clock. Submit a booking
+            inquiry or reach us directly.</p>
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;align-items:center;gap:14px">
+              <div
+                style="width:44px;height:44px;border-radius:8px;background:#f0f4fa;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">
+                📧</div>
+              <div>
+                <div
+                  style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px">
+                  Email</div>
+                <div style="font-size:14px;font-weight:500;color:var(--navy)">bookings@hotelbooking.com</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <div
+                style="width:44px;height:44px;border-radius:8px;background:#f0f4fa;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">
+                📱</div>
+              <div>
+                <div
+                  style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px">
+                  WhatsApp / Phone</div>
+                <div style="font-size:14px;font-weight:500;color:var(--navy)">+971 50 000 0000</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <div
+                style="width:44px;height:44px;border-radius:8px;background:#f0f4fa;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">
+                🕐</div>
+              <div>
+                <div
+                  style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px">
+                  Availability</div>
+                <div style="font-size:14px;font-weight:500;color:var(--navy)">24 / 7 — All time zones</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--ivory);border-radius:16px;padding:40px;border:1px solid #e8ecf2">
+          <h3
+            style="font-family:'Cormorant Garant',serif;font-size:1.5rem;font-weight:600;color:var(--navy);margin-bottom:24px">
+            Quick Inquiry</h3>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="fg"><label>Full Name</label><input type="text" placeholder="Your full name" id="cName" /></div>
+            <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" id="cEmail" /></div>
+            <div class="fg"><label>Destination</label>
+              <select id="cDest">
+                <option value="">Select country</option>
+                <option>UAE</option>
+                <option>Saudi Arabia</option>
+                <option>Qatar</option>
+                <option>Bahrain</option>
+                <option>Kuwait</option>
+                <option>Oman</option>
+                <option>Egypt</option>
+                <option>Jordan</option>
+                <option>Australia</option>
+              </select>
+            </div>
+            <div class="fg"><label>Message</label><textarea placeholder="Tell us about your stay requirements..."
+                id="cMsg" style="min-height:80px"></textarea></div>
+            <button class="modal-submit" onclick="submitContact()" style="border-radius:8px">Send Inquiry</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">Hotel<span>Booking</span></div>
+          <p class="footer-desc">Your gateway to luxury hotels across the Middle East and Australia. Commission-based,
+            guest-first, always available.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Destinations</h4>
+          <ul>
+            <li><a href="#" onclick="filterHotels('UAE')">UAE</a></li>
+            <li><a href="#" onclick="filterHotels('Saudi Arabia')">Saudi Arabia</a></li>
+            <li><a href="#" onclick="filterHotels('Qatar')">Qatar</a></li>
+            <li><a href="#" onclick="filterHotels('Bahrain')">Bahrain</a></li>
+            <li><a href="#" onclick="filterHotels('Kuwait')">Kuwait</a></li>
+            <li><a href="#" onclick="filterHotels('Oman')">Oman</a></li>
+            <li><a href="#" onclick="filterHotels('Egypt')">Egypt</a></li>
+            <li><a href="#" onclick="filterHotels('Jordan')">Jordan</a></li>
+            <li><a href="#" onclick="filterHotels('Australia')">Australia</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#about">Commission Model</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:bookings@hotelbooking.com">bookings@hotelbooking.com</a></li>
+            <li><a href="tel:+971500000000">+971 50 000 0000</a></li>
+            <li><a href="#">WhatsApp Us</a></li>
+            <li><a href="#">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Hotel Booking. All rights reserved.</span>
+        <span>Luxury Hotels · Middle East &amp; Australia · Commission-Based</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOOKING MODAL -->
+  <div class="modal-overlay" id="bookingModal" onclick="handleOverlayClick(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Book Your Stay</h2>
+        <div class="modal-hotel-name" id="modalHotelLabel">5-Star Luxury Hotel</div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="fg"><label>First Name</label><input type="text" id="mFirst" placeholder="First name" required />
+          </div>
+          <div class="fg"><label>Last Name</label><input type="text" id="mLast" placeholder="Last name" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>Email</label><input type="email" id="mEmail" placeholder="your@email.com" required />
+          </div>
+          <div class="fg"><label>Phone / WhatsApp</label><input type="tel" id="mPhone" placeholder="+971 5X XXX XXXX"
+              required /></div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>Check-in Date</label><input type="date" id="mCheckin" required /></div>
+          <div class="fg"><label>Check-out Date</label><input type="date" id="mCheckout" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>Number of Rooms</label>
+            <select id="mRooms">
+              <option>1 Room</option>
+              <option>2 Rooms</option>
+              <option>3 Rooms</option>
+              <option>4 Rooms</option>
+              <option>5+ Rooms</option>
+            </select>
+          </div>
+          <div class="fg"><label>Room Type</label>
+            <select id="mRoomType">
+              <option>Deluxe Room</option>
+              <option>Superior Room</option>
+              <option>Junior Suite</option>
+              <option>Suite</option>
+              <option>Presidential Suite</option>
+              <option>Sea View Room</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>Number of Adults</label>
+            <select id="mAdults">
+              <option>1</option>
+              <option selected>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+          <div class="fg"><label>Children</label>
+            <select id="mChildren">
+              <option selected>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row full">
+          <div class="fg"><label>Nationality / Passport Country</label><input type="text" id="mNationality"
+              placeholder="e.g. Philippines" /></div>
+        </div>
+        <div class="form-row full">
+          <div class="fg"><label>Special Requests</label><textarea id="mRequests"
+              placeholder="Early check-in, dietary requirements, occasion, accessibility needs..."></textarea></div>
+        </div>
+        <button class="modal-submit" onclick="submitBooking()">Submit Booking Inquiry</button>
+        <p class="modal-note">We will confirm availability and rates within 2 hours. No payment required now.</p>
+        <div
+          style="margin-top:14px;background:#f6f2e6;border:1px solid rgba(201,168,76,.35);border-radius:8px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+          <span style="font-size:16px;line-height:1">🔒</span>
+          <p style="font-size:12px;color:var(--slate);line-height:1.6;margin:0">To guarantee your reservation, a
+            <strong>secure payment link</strong> will be sent to your email after we confirm availability. We never
+            collect card details through this form.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    // ── EmailJS Configuration ─────────────────────────────────────
+    var EMAILJS_PUBLIC_KEY = 'h5Gv-CKkBQW5rIw7a';
+    var EMAILJS_SERVICE_ID = 'service_k262jhl';
+    var EMAILJS_BOOKING_TEMPLATE_ID = 'template_orw6juu';
+    var EMAILJS_CONTACT_TEMPLATE_ID = 'template_orw6juu';
+
+    (function () {
+      if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+      }
+    })();
+
+    // ── Hotel Data ─────────────────────────────────────────────────
+    var hotels = [
+      // UAE
+      { id: 1, name: 'Burj Al Arab Jumeirah', location: 'Jumeirah Beach, Dubai', country: 'UAE', city: 'Dubai', rate: 1200, currency: 'USD', stars: 5, amenities: ['Private Beach', 'Butler Service', 'Helipad', 'Michelin Restaurants', 'Infinity Pool'], img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80', desc: 'The world\'s most iconic luxury hotel, standing on its own island. All-suite hotel with 24-hour butler service.' },
+      { id: 2, name: 'Emirates Palace Mandarin Oriental', location: 'Corniche Road, Abu Dhabi', country: 'UAE', city: 'Abu Dhabi', rate: 900, currency: 'USD', stars: 5, amenities: ['Private Beach', 'Spa', 'Gold ATM', 'Multiple Pools', 'Fine Dining'], img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80', desc: 'A palatial property on Abu Dhabi\'s Corniche with 1.3km of private beach and legendary gold-leaf interiors.' },
+      { id: 3, name: 'Atlantis The Royal', location: 'The Palm, Dubai', country: 'UAE', city: 'Dubai', rate: 850, currency: 'USD', stars: 5, amenities: ['Aquaventure Waterpark', 'Lost Chambers Aquarium', 'Celebrity Restaurants', 'Infinity Pool', 'Spa'], img: 'https://images.unsplash.com/photo-1548438294-1ad5d5f4f063?w=600&q=80', desc: 'Dubai\'s most spectacular ultra-luxury resort on The Palm, featuring a rooftop infinity pool and iconic architecture.' },
+      // Saudi Arabia
+      { id: 4, name: 'The Ritz-Carlton Riyadh', location: 'Al Hada Area, Riyadh', country: 'Saudi Arabia', city: 'Riyadh', rate: 650, currency: 'USD', stars: 5, amenities: ['Royal Palace Architecture', 'Spa', 'Multiple Pools', 'Fine Dining', 'Concierge'], img: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80', desc: 'Set in a stunning royal-palace-inspired building, offering unmatched elegance in the heart of Saudi Arabia.' },
+      { id: 5, name: 'Four Seasons Hotel Riyadh', location: 'Kingdom Centre, Riyadh', country: 'Saudi Arabia', city: 'Riyadh', rate: 580, currency: 'USD', stars: 5, amenities: ['Kingdom Centre Views', 'Rooftop Pool', 'Spa', 'Award-Winning Dining', 'Business Centre'], img: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80', desc: 'Perched atop the iconic Kingdom Centre Tower, offering panoramic city views with Four Seasons signature service.' },
+      { id: 6, name: 'Rosewood Jeddah', location: 'Corniche Road, Jeddah', country: 'Saudi Arabia', city: 'Jeddah', rate: 520, currency: 'USD', stars: 5, amenities: ['Red Sea Views', 'Beachfront', 'Spa', 'Rooftop Bar', 'Private Cabanas'], img: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80', desc: 'A landmark of modern luxury on the Jeddah Corniche with sweeping Red Sea views and world-class dining.' },
+      // Qatar
+      { id: 7, name: 'Mandarin Oriental Doha', location: 'West Bay, Doha', country: 'Qatar', city: 'Doha', rate: 480, currency: 'USD', stars: 5, amenities: ['Orchid Spa', 'Rooftop Pool', '9 Restaurants', 'Private Beach Club', 'Art Collection'], img: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=600&q=80', desc: 'A striking contemporary tower in Doha\'s financial district, famed for its Orchid Spa and exceptional dining.' },
+      { id: 8, name: 'The St. Regis Doha', location: 'West Bay Lagoon, Doha', country: 'Qatar', city: 'Doha', rate: 520, currency: 'USD', stars: 5, amenities: ['Iridium Spa', 'Private Beach', 'Signature Butler', 'Multiple Pools', 'Michelin-Starred Dining'], img: 'https://images.unsplash.com/photo-1535827841776-24afc1e255ac?w=600&q=80', desc: 'Iconic St. Regis signature butler service meets beachfront luxury at this landmark Doha property.' },
+      { id: 9, name: 'Four Seasons Hotel Doha', location: 'Doha Corniche', country: 'Qatar', city: 'Doha', rate: 490, currency: 'USD', stars: 5, amenities: ['Corniche Waterfront', 'Spa', 'Private Beach', 'Multiple Restaurants', 'Tennis Courts'], img: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80', desc: 'Occupying a prime spot on Doha\'s Corniche with stunning bay views and world-class Four Seasons hospitality.' },
+      // Bahrain
+      { id: 10, name: 'Four Seasons Hotel Bahrain Bay', location: 'Bahrain Bay, Manama', country: 'Bahrain', city: 'Manama', rate: 420, currency: 'USD', stars: 5, amenities: ['Bay Views', 'Multiple Pools', 'Spa', 'Fine Dining', 'Private Beach'], img: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=600&q=80', desc: 'Rising above the waters of Bahrain Bay, connected to the mainland by a private causeway with stunning sea views.' },
+      { id: 11, name: 'The Ritz-Carlton Bahrain', location: 'Seef District, Manama', country: 'Bahrain', city: 'Manama', rate: 390, currency: 'USD', stars: 5, amenities: ['700m Private Beach', '9 Restaurants', 'Spa Village', 'Tennis', 'Watersports'], img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80', desc: 'Bahrain\'s premier beach resort with 700 metres of pristine private beach and a renowned spa village.' },
+      // Kuwait
+      { id: 12, name: 'The St. Regis Kuwait', location: 'Sharq Marina, Kuwait City', country: 'Kuwait', city: 'Kuwait City', rate: 380, currency: 'USD', stars: 5, amenities: ['Marina Views', 'Iridium Spa', 'Rooftop Pool', 'Butler Service', 'Fine Dining'], img: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80', desc: 'Kuwait\'s most sophisticated address overlooking the Arabian Gulf at Sharq Marina.' },
+      { id: 13, name: 'Four Seasons Hotel Kuwait', location: 'Al Shuhada Street, Kuwait City', country: 'Kuwait', city: 'Kuwait City', rate: 360, currency: 'USD', stars: 5, amenities: ['Gulf Views', 'Spa', 'Multiple Pools', 'Award-Winning Restaurants', 'Business Lounge'], img: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80', desc: 'Redefining luxury in Kuwait with Gulf views, unmatched dining, and the legendary Four Seasons touch.' },
+      // Oman
+      { id: 14, name: 'The Chedi Muscat', location: 'North Ghubra, Muscat', country: 'Oman', city: 'Muscat', rate: 350, currency: 'USD', stars: 5, amenities: ['300m Pool', 'Private Beach', 'Spa', 'Fine Dining', 'Water Sports'], img: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=600&q=80', desc: 'Award-winning minimalist resort featuring one of the longest swimming pools in the Middle East at 300 metres.' },
+      { id: 15, name: 'Al Bustan Palace, A Ritz-Carlton Hotel', location: 'Qantab, Muscat', country: 'Oman', city: 'Muscat', rate: 380, currency: 'USD', stars: 5, amenities: ['Private Beach', 'Mountain Backdrop', 'Heritage Architecture', 'Spa', 'Diving Centre'], img: 'https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=600&q=80', desc: 'A palatial property nestled between the Hajar Mountains and the Gulf of Oman, rich in Omani heritage.' },
+      // Egypt
+      { id: 16, name: 'Four Seasons Cairo at The First Residence', location: 'Giza, Cairo', country: 'Egypt', city: 'Cairo', rate: 320, currency: 'USD', stars: 5, amenities: ['Nile Views', 'Pyramid Views', 'Spa', 'Multiple Restaurants', 'Rooftop Pool'], img: 'https://images.unsplash.com/photo-1539768942893-daf53e448371?w=600&q=80', desc: 'Overlooking the Nile with unobstructed pyramid views — an iconic Cairo luxury experience.' },
+      { id: 17, name: 'Kempinski Nile Hotel Cairo', location: 'Garden City, Cairo', country: 'Egypt', city: 'Cairo', rate: 280, currency: 'USD', stars: 5, amenities: ['Nile-Front', 'Rooftop Pool', 'Spaziо Spa', 'Multiple Restaurants', 'City Views'], img: 'https://images.unsplash.com/photo-1568495248636-6432b97bd949?w=600&q=80', desc: 'A Nile-front landmark in Cairo\'s prestigious Garden City, offering European elegance in an Egyptian setting.' },
+      { id: 18, name: 'Sofitel Legend Old Cataract Aswan', location: 'Abtal El Tahrir Street, Aswan', country: 'Egypt', city: 'Aswan', rate: 350, currency: 'USD', stars: 5, amenities: ['Nile Island Views', 'Colonial Heritage', 'Spa', 'Infinity Pool', 'Historic Gardens'], img: 'https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=600&q=80', desc: 'A legendary 19th-century property in Aswan where Agatha Christie wrote Death on the Nile — pure history and luxury.' },
+      // Jordan
+      { id: 19, name: 'Four Seasons Hotel Amman', location: 'Al Kindi Street, Amman', country: 'Jordan', city: 'Amman', rate: 290, currency: 'USD', stars: 5, amenities: ['City Views', 'Outdoor Pool', 'Spa', 'Dining', 'Business Centre'], img: 'https://images.unsplash.com/photo-1601918774946-25832a4be0d6?w=600&q=80', desc: 'Amman\'s premier address on the seventh circle with sweeping city views and Four Seasons signature luxury.' },
+      { id: 20, name: 'The Ritz-Carlton Amman', location: 'Al Quds Street, Amman', country: 'Jordan', city: 'Amman', rate: 310, currency: 'USD', stars: 5, amenities: ['Panoramic Views', 'Spa', 'Outdoor Pool', 'Multiple Restaurants', 'Club Lounge'], img: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80', desc: 'Jordan\'s most distinguished luxury hotel offering panoramic views of Amman and Ritz-Carlton flawless service.' },
+      { id: 21, name: 'Kempinski Hotel Ishtar Dead Sea', location: 'Dead Sea Road, Jordan', country: 'Jordan', city: 'Dead Sea', rate: 340, currency: 'USD', stars: 5, amenities: ['Dead Sea Access', 'Infinity Pool', 'Spa', 'Terraced Gardens', 'Water Sports'], img: 'https://images.unsplash.com/photo-1549294413-26f195200c16?w=600&q=80', desc: 'Dramatic terraced architecture cascading down to the lowest point on earth — the Dead Sea. Unique and unforgettable.' },
+      // ── 4-STAR HOTELS ──
+      { id: 22, name: 'Rove Downtown Dubai', location: 'Downtown, Dubai', country: 'UAE', city: 'Dubai', rate: 160, currency: 'USD', stars: 4, amenities: ['Burj Khalifa Views', 'Rooftop Pool', '24hr Gym', 'Co-working Space'], img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80', desc: 'Modern lifestyle hotel steps from Dubai Mall and Burj Khalifa with smart design and great value.' },
+      { id: 23, name: 'Hilton Dubai Jumeirah', location: 'JBR, The Walk, Dubai', country: 'UAE', city: 'Dubai', rate: 220, currency: 'USD', stars: 4, amenities: ['Private Beach', '4 Pools', 'Kids Club', 'Beachfront Dining'], img: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80', desc: 'Beachfront resort on JBR The Walk with direct beach access and family-friendly facilities.' },
+      { id: 24, name: 'Novotel Riyadh Al Anoud', location: 'King Fahd Road, Riyadh', country: 'Saudi Arabia', city: 'Riyadh', rate: 140, currency: 'USD', stars: 4, amenities: ['Business District', 'Outdoor Pool', 'Fitness Centre', '3 Restaurants'], img: 'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=600&q=80', desc: 'Contemporary hotel on King Fahd Road in the heart of Riyadh business district.' },
+      { id: 25, name: 'Centro Shaheen Jeddah', location: 'Madinah Road, Jeddah', country: 'Saudi Arabia', city: 'Jeddah', rate: 110, currency: 'USD', stars: 4, amenities: ['Smart Rooms', 'Rooftop Pool', 'Gym', 'Airport Shuttle'], img: 'https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=600&q=80', desc: 'Stylish smart-hotel by Rotana, minutes from Jeddah airport and the corniche.' },
+      { id: 26, name: 'Alwadi Hotel Doha MGallery', location: 'Msheireb Downtown, Doha', country: 'Qatar', city: 'Doha', rate: 190, currency: 'USD', stars: 4, amenities: ['Boutique Design', 'Rooftop Terrace', 'Spa', 'Souq Waqif Nearby'], img: 'https://images.unsplash.com/photo-1568084680786-a84f91d1153c?w=600&q=80', desc: 'Design-led boutique hotel in Msheireb Downtown, walking distance to Souq Waqif.' },
+      { id: 27, name: 'Wyndham Doha West Bay', location: 'West Bay, Doha', country: 'Qatar', city: 'Doha', rate: 150, currency: 'USD', stars: 4, amenities: ['City Views', 'Rooftop Pool', '5 Restaurants', 'Business Centre'], img: 'https://images.unsplash.com/photo-1444201983204-c43cbd584d93?w=600&q=80', desc: 'Modern West Bay tower hotel with panoramic city views and excellent dining options.' },
+      { id: 28, name: 'The Merchant House Bahrain', location: 'Manama Souq, Manama', country: 'Bahrain', city: 'Manama', rate: 180, currency: 'USD', stars: 4, amenities: ['Boutique Suites', 'Rooftop Pool', 'Art Collection', 'Souq Location'], img: 'https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=600&q=80', desc: 'Intimate all-suite boutique hotel in the heart of old Manama souq with a stunning rooftop.' },
+      { id: 29, name: 'Ramee Grand Hotel & Spa', location: 'Seef District, Manama', country: 'Bahrain', city: 'Manama', rate: 120, currency: 'USD', stars: 4, amenities: ['Spa', 'Rooftop Pool', 'Multiple Restaurants', 'Seef Mall Nearby'], img: 'https://images.unsplash.com/photo-1517840901100-8179e982acb7?w=600&q=80', desc: 'Comfortable Seef district hotel with a full-service spa, near Bahrain\'s best shopping.' },
+      { id: 30, name: 'Millennium Hotel & Convention Centre Kuwait', location: 'Al Salmiya, Kuwait City', country: 'Kuwait', city: 'Kuwait City', rate: 130, currency: 'USD', stars: 4, amenities: ['Sea Views', 'Outdoor Pool', 'Gym', 'Convention Centre'], img: 'https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80', desc: 'Modern Salmiya hotel with Gulf views, ideal for both business and leisure travellers.' },
+      { id: 31, name: 'Symphony Style Hotel Kuwait', location: 'Salmiya, Kuwait City', country: 'Kuwait', city: 'Kuwait City', rate: 145, currency: 'USD', stars: 4, amenities: ['Designer Interiors', 'Symphony Mall Access', 'Spa', 'Sea Views'], img: 'https://images.unsplash.com/photo-1578774296842-c45e472b3028?w=600&q=80', desc: 'A Radisson Collection hotel with bold designer interiors, connected to Symphony Style Mall.' },
+      { id: 32, name: 'Crowne Plaza Muscat', location: 'Qurum Heights, Muscat', country: 'Oman', city: 'Muscat', rate: 125, currency: 'USD', stars: 4, amenities: ['Clifftop Views', 'Private Beach', 'Outdoor Pool', 'Tennis Court'], img: 'https://images.unsplash.com/photo-1571770095004-6b61b1cf308a?w=600&q=80', desc: 'Perched on Qurum Heights cliffs with sweeping sea views and direct beach access.' },
+      { id: 33, name: 'Fraser Suites Muscat', location: 'Al Khuwair, Muscat', country: 'Oman', city: 'Muscat', rate: 135, currency: 'USD', stars: 4, amenities: ['Serviced Apartments', 'Kitchenettes', 'Rooftop Pool', 'Gym'], img: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&q=80', desc: 'Spacious serviced apartments in Al Khuwair, perfect for families and longer stays.' },
+      { id: 34, name: 'Steigenberger Hotel El Tahrir Cairo', location: 'Downtown, Cairo', country: 'Egypt', city: 'Cairo', rate: 95, currency: 'USD', stars: 4, amenities: ['Tahrir Square', 'Rooftop Pool', 'Egyptian Museum Nearby', '2 Restaurants'], img: 'https://images.unsplash.com/photo-1549144511-f099e773c147?w=600&q=80', desc: 'Contemporary hotel on Tahrir Square, steps from the Egyptian Museum and downtown Cairo.' },
+      { id: 35, name: 'Hilton Luxor Resort & Spa', location: 'New Karnak, Luxor', country: 'Egypt', city: 'Luxor', rate: 120, currency: 'USD', stars: 4, amenities: ['Nile Views', 'Infinity Pools', 'Spa', 'Karnak Temple Nearby'], img: 'https://images.unsplash.com/photo-1600011689032-8b628b8bfc4e?w=600&q=80', desc: 'Nile-front resort with stunning infinity pools, minutes from Karnak Temple.' },
+      { id: 36, name: 'The House Boutique Suites Amman', location: '5th Circle, Amman', country: 'Jordan', city: 'Amman', rate: 150, currency: 'USD', stars: 4, amenities: ['All-Suite', 'Rooftop Pool', 'Spa', 'Diplomatic Area'], img: 'https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?w=600&q=80', desc: 'Elegant all-suite boutique hotel in Amman\'s diplomatic quarter with a rooftop pool.' },
+      { id: 37, name: 'Mövenpick Resort Petra', location: 'Wadi Musa, Petra', country: 'Jordan', city: 'Petra', rate: 170, currency: 'USD', stars: 4, amenities: ['Petra Entrance', 'Rooftop Terrace', 'Spa', 'Outdoor Pool', 'Multiple Dining'], img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600&q=80', desc: 'Located directly at the entrance to the ancient city of Petra, featuring rich oriental style.' },
+      // ── AUSTRALIA (RECONSTRUCTED) ──
+      { id: 38, name: 'Park Hyatt Sydney', location: 'The Rocks, Sydney', country: 'Australia', city: 'Sydney', rate: 800, currency: 'USD', stars: 5, amenities: ['Opera House Views', 'Rooftop Pool', 'Butler Service', 'Spa', 'Harbour Dining'], img: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=80', desc: 'Seated majestically on Sydney Harbour, offering unmatched views of the Opera House and Harbour Bridge.' },
+      { id: 39, name: 'The Langham Melbourne', location: 'Southbank, Melbourne', country: 'Australia', city: 'Melbourne', rate: 450, currency: 'USD', stars: 5, amenities: ['Yarra River Views', 'Chuan Spa', 'Indoor Pool', 'Melba Restaurant', 'Club Lounge'], img: 'https://images.unsplash.com/photo-1517840901100-8179e982acb7?w=600&q=80', desc: 'Sweeping views of the Melbourne skyline and Yarra River, renowned for its legendary high tea and classic luxury.' },
+      { id: 40, name: 'COMO The Treasury Perth', location: 'Cathedral Avenue, Perth', country: 'Australia', city: 'Perth', rate: 500, currency: 'USD', stars: 5, amenities: ['Historic Building', 'COMO Shambhala Spa', 'Indoor Pool', 'Wildflower Restaurant', 'Concierge'], img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80', desc: 'Set in 19th-century state buildings in the heart of Perth, offering contemporary style and wellness therapies.' },
+      { id: 41, name: 'Vibe Hotel Sydney', location: 'Elizabeth Street, Sydney', country: 'Australia', city: 'Sydney', rate: 180, currency: 'USD', stars: 4, amenities: ['Rooftop Pool', 'Gym', 'Storehouse Restaurant', 'Central Location'], img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80', desc: 'Modern design in Sydney CBD, steps from Hyde Park and Central Station.' },
+      { id: 42, name: 'The Quincy Hotel Melbourne', location: 'Flinders Lane, Melbourne', country: 'Australia', city: 'Melbourne', rate: 210, currency: 'USD', stars: 4, amenities: ['Rooftop Pool', 'Sing Song Bar', 'Gym', 'Flinders Lane Location'], img: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80', desc: 'Brings quirky luxury and Southeast Asian flavours to Melbourne\'s Flinders Lane.' },
+      { id: 43, name: 'Hotel Hugo Brisbane', location: 'Fortitude Valley, Brisbane', country: 'Australia', city: 'Brisbane', rate: 160, currency: 'USD', stars: 4, amenities: ['Rooftop Bar', 'Outdoor Pool', 'Gym', 'Valley Dining'], img: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80', desc: 'Chic boutique hotel in Fortitude Valley with industrial-glam design and a popular rooftop bar.' }
+    ];
+
+    // Active Filter States
+    var selectedCountry = 'all';
+    var selectedStars = 'all';
+
+    // Sync filters between buttons & select dropdowns
+    function filterHotels(country, btn) {
+      selectedCountry = country;
+
+      // Sync the hero dropdown
+      var selectEl = document.getElementById('heroCountry');
+      if (selectEl) {
+        selectEl.value = country;
+      }
+
+      // Sync the filter tabs
+      var tabs = document.querySelectorAll('#filterTabs .filter-btn');
+      tabs.forEach(t => {
+        var onclickStr = t.getAttribute('onclick') || '';
+        if (onclickStr.includes("'" + country + "'") || (country === 'all' && onclickStr.includes("'all'"))) {
+          t.classList.add('active');
+        } else {
+          t.classList.remove('active');
+        }
+      });
+
+      applyFilters();
+    }
+
+    function filterStars(stars, btn) {
+      selectedStars = stars;
+      if (btn) {
+        var starBtns = document.querySelectorAll('.star-btn');
+        starBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      applyFilters();
+    }
+
+    function applyFilters() {
+      var filtered = hotels.filter(h => {
+        var countryMatch = (selectedCountry === 'all' || h.country === selectedCountry);
+        var starsMatch = (selectedStars === 'all' || h.stars == selectedStars);
+        return countryMatch && starsMatch;
+      });
+
+      renderHotels(filtered);
+    }
+
+    function renderHotels(list) {
+      var grid = document.getElementById('hotelGrid');
+      if (!grid) return;
+
+      if (list.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 48px; color: var(--muted)">No hotels match your filters.</div>';
+        return;
+      }
+
+      grid.innerHTML = list.map(h => {
+        var starStr = '★'.repeat(h.stars);
+        return `
+      <div class="hotel-card">
+        <div class="hotel-img">
+          <img src="${h.img}" alt="${h.name}">
+          <span class="stars">${starStr} ${h.stars}-Star</span>
+          <span class="country-badge">${h.country}</span>
+        </div>
+        <div class="hotel-body">
+          <h3 class="hotel-name">${h.name}</h3>
+          <div class="hotel-loc">${h.location}</div>
+          <div class="amenities">
+            ${h.amenities.map(a => `<span class="amenity">${a}</span>`).join('')}
+          </div>
+          <div class="hotel-footer">
+            <div class="rate">
+              <span class="rate-from">From</span>
+              <span class="rate-price">$${h.rate}</span>
+              <span class="rate-night">/ night</span>
+            </div>
+            <button class="book-btn" onclick="openModal('${h.name.replace(/'/g, "\\'")}', '${h.country}')">Book Now</button>
+          </div>
+        </div>
+      </div>
+    `;
+      }).join('');
+    }
+
+    function scrollToHotels() {
+      var target = document.getElementById('hotels');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // ── Booking Modal Logic ──
+    function openModal(hotelName, country) {
+      var modal = document.getElementById('bookingModal');
+      var label = document.getElementById('modalHotelLabel');
+      if (modal && label) {
+        label.textContent = hotelName + ' · ' + country;
+
+        // Autofill dates if set in the hero search
+        var checkinHero = document.getElementById('checkin').value;
+        var checkoutHero = document.getElementById('checkout').value;
+        if (checkinHero) document.getElementById('mCheckin').value = checkinHero;
+        if (checkoutHero) document.getElementById('mCheckout').value = checkoutHero;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal() {
+      var modal = document.getElementById('bookingModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target.classList.contains('modal-overlay')) {
+        closeModal();
+      }
+    }
+
+    // Toast notification helper
+    function showToast(message, type) {
+      var toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.className = 'show';
+      if (type === 'gold') {
+        toast.classList.add('gold');
+      }
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4000);
+    }
+
+    // Form submissions mapped to HTML email template parameters (name, time, message)
+    function submitBooking() {
+      var hotelLabel = document.getElementById('modalHotelLabel').textContent;
+      var first = document.getElementById('mFirst').value.trim();
+      var last = document.getElementById('mLast').value.trim();
+      var email = document.getElementById('mEmail').value.trim();
+      var phone = document.getElementById('mPhone').value.trim();
+      var checkin = document.getElementById('mCheckin').value;
+      var checkout = document.getElementById('mCheckout').value;
+      var rooms = document.getElementById('mRooms').value;
+      var roomType = document.getElementById('mRoomType').value;
+      var adults = document.getElementById('mAdults').value;
+      var children = document.getElementById('mChildren').value;
+      var nationality = document.getElementById('mNationality').value.trim();
+      var requests = document.getElementById('mRequests').value.trim();
+
+      if (!first || !last || !email || !phone || !checkin || !checkout) {
+        showToast('Please fill in all required fields.', 'err');
+        return;
+      }
+
+      var submitBtn = document.querySelector('#bookingModal .modal-submit');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending Inquiry...';
+      }
+
+      // Use EmailJS to send booking inquiry mapped to email template keys
+      if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_BOOKING_TEMPLATE_ID, {
+          name: first + ' ' + last,
+          time: new Date().toLocaleString(),
+          message: 'Hotel: ' + hotelLabel + '\n' +
+            'Email: ' + email + '\n' +
+            'Phone: ' + phone + '\n' +
+            'Check-in: ' + checkin + '\n' +
+            'Check-out: ' + checkout + '\n' +
+            'Rooms: ' + rooms + '\n' +
+            'Room Type: ' + roomType + '\n' +
+            'Guests: ' + adults + ' Adults, ' + children + ' Children\n' +
+            'Nationality: ' + nationality + '\n' +
+            'Special Requests: ' + (requests || 'None')
+        }).then(function () {
+          showToast('Booking inquiry submitted successfully!', 'gold');
+          closeModal();
+          resetBookingForm();
+        }, function (err) {
+          console.error('EmailJS error:', err);
+          showToast('Failed to send via email service. Please try again.', 'err');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Booking Inquiry';
+          }
+        });
+      } else {
+        // Mock simulation fallback
+        setTimeout(() => {
+          showToast('Inquiry submitted! We will email you in 2 hours.', 'gold');
+          closeModal();
+          resetBookingForm();
+        }, 1200);
+      }
+    }
+
+    function resetBookingForm() {
+      document.getElementById('mFirst').value = '';
+      document.getElementById('mLast').value = '';
+      document.getElementById('mEmail').value = '';
+      document.getElementById('mPhone').value = '';
+      document.getElementById('mCheckin').value = '';
+      document.getElementById('mCheckout').value = '';
+      document.getElementById('mNationality').value = '';
+      document.getElementById('mRequests').value = '';
+
+      var submitBtn = document.querySelector('#bookingModal .modal-submit');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Booking Inquiry';
+      }
+    }
+
+    function submitContact() {
+      var name = document.getElementById('cName').value.trim();
+      var email = document.getElementById('cEmail').value.trim();
+      var dest = document.getElementById('cDest').value;
+      var msg = document.getElementById('cMsg').value.trim();
+
+      if (!name || !email || !dest || !msg) {
+        showToast('Please fill in all contact fields.', 'err');
+        return;
+      }
+
+      var submitBtn = document.querySelector('#contact .modal-submit');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+      }
+
+      // Use EmailJS to send contact inquiry mapped to email template keys
+      if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CONTACT_TEMPLATE_ID, {
+          name: name,
+          time: new Date().toLocaleString(),
+          message: 'Email: ' + email + '\n' +
+            'Preferred Destination: ' + dest + '\n' +
+            'Message:\n' + msg
+        }).then(function () {
+          showToast('Message sent! We will contact you shortly.', 'gold');
+          resetContactForm();
+        }, function (err) {
+          console.error('EmailJS error:', err);
+          showToast('Failed to send contact inquiry. Please try again.', 'err');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Inquiry';
+          }
+        });
+      } else {
+        setTimeout(() => {
+          showToast('Message submitted! We will contact you shortly.', 'gold');
+          resetContactForm();
+        }, 1200);
+      }
+    }
+
+    function resetContactForm() {
+      document.getElementById('cName').value = '';
+      document.getElementById('cEmail').value = '';
+      document.getElementById('cDest').value = '';
+      document.getElementById('cMsg').value = '';
+
+      var submitBtn = document.querySelector('#contact .modal-submit');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Inquiry';
+      }
+    }
+
+    // Initial render
+    window.onload = function () {
+      renderHotels(hotels);
+    };
+  </script>
+
+</body>
+
+</html>
